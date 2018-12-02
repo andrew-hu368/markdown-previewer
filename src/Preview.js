@@ -1,11 +1,9 @@
 import React from "react";
 
-const TextArea = props => {
-  const { width, height, isVisible, isExpanded } = props.textarea;
-  const textareaBox = { textAlign: "center" };
-  const textarea = { width: width, height: height };
+function Preview(props) {
+  const { width, isVisible, isExpanded } = props.preview;
+  const previewBox = { width: width, margin: "0 auto" };
   const heading = {
-    width: width,
     textAlign: "left",
     margin: "20px auto 0",
     background: "linear-gradient(30deg, #1c14b3, #1d50ba)",
@@ -24,10 +22,10 @@ const TextArea = props => {
 
   if (isVisible) {
     return (
-      <div style={textareaBox}>
+      <div id="preview" style={previewBox}>
         <div style={heading}>
-          Editor
-          <span style={expand} onClick={props.expandTextarea}>
+          Previewer{" "}
+          <span style={expand} onClick={props.expandPreview}>
             {isExpanded ? (
               <i className="fas fa-minus-square" />
             ) : (
@@ -35,17 +33,12 @@ const TextArea = props => {
             )}
           </span>
         </div>
-        <textarea
-          style={textarea}
-          id="editor"
-          value={props.value}
-          onChange={props.handleChange}
-        />
+        <p>{props.value}</p>
       </div>
     );
   }
 
   return null;
-};
+}
 
-export default TextArea;
+export default Preview;
