@@ -1,8 +1,11 @@
 import React from "react";
+import marked from "marked";
 
 function Preview(props) {
   const { width, isVisible, isExpanded } = props.preview;
+
   const previewBox = { width: width, margin: "0 auto" };
+
   const heading = {
     textAlign: "left",
     margin: "20px auto 0",
@@ -14,10 +17,16 @@ function Preview(props) {
     lineHeight: "60px",
     padding: "0 15px"
   };
+
   const expand = {
     cursor: "pointer",
     display: "inline-block",
     float: "right"
+  };
+
+  const preview = {
+    padding: "15px",
+    border: "1px solid #1c14b3"
   };
 
   if (isVisible) {
@@ -33,12 +42,19 @@ function Preview(props) {
             )}
           </span>
         </div>
-        <p>{props.value}</p>
+        <div
+          dangerouslySetInnerHTML={createMarkup(props.value)}
+          style={preview}
+        />
       </div>
     );
   }
 
   return null;
+}
+
+function createMarkup(value) {
+  return { __html: marked(value) };
 }
 
 export default Preview;
