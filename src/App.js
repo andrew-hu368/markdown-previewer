@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import TextArea from "./TextArea.js";
+import TextArea from "./textarea.js";
 import Preview from "./Preview.js";
 // #1c14b3
 // #1d50ba

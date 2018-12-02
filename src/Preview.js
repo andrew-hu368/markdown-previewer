@@ -31,7 +31,7 @@ function Preview(props) {
 
   if (isVisible) {
     return (
-      <div id="preview" style={previewBox}>
+      <div style={previewBox}>
         <div style={heading}>
           Previewer{" "}
           <span style={expand} onClick={props.expandPreview}>
@@ -43,6 +43,7 @@ function Preview(props) {
           </span>
         </div>
         <div
+          id="preview"
           dangerouslySetInnerHTML={createMarkup(props.value)}
           style={preview}
         />
@@ -54,6 +55,9 @@ function Preview(props) {
 }
 
 function createMarkup(value) {
+  marked.setOptions({
+    breaks: true
+  });
   return { __html: marked(value) };
 }
 
